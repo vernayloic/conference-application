@@ -1,3 +1,11 @@
-FROM fabric8/tomcat-9
+FROM java:8
 
-COPY *.war /opt/tomcat/webapps/
+MAINTAINER Marcel Birkner <marcel.birkner@codecentric.de>
+
+VOLUME /tmp
+
+ADD conference-app*.war app.war
+
+RUN bash -c 'touch /app.war'
+
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.war"]
