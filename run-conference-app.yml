@@ -1,0 +1,12 @@
+---
+- name: Install Jenkins CI/CD
+  hosts: centos_remote_a
+  tasks:
+    - name: Docker test exists
+      shell: docker ps --all --quiet --filter=name="conference-test"
+      register: conference_id
+    - name: Delete container if exist
+      shell: docker rm -f conference-test
+      when: conference_id.stdout != ""
+    - name: Start test container
+      shell: docker run -d --name conference-test -p 10100:8080 systemdevformations/confapp
