@@ -4,7 +4,7 @@ MAINTAINER Marcel Birkner <marcel.birkner@codecentric.de>
 
 VOLUME /tmp
 
-ADD target/conference-app*.war app.war
+ADD *.war app.war
 
 RUN bash -c 'touch /app.war'
 
