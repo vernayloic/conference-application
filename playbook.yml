@@ -1,5 +1,5 @@
 ---
-- name: Install Jenkins CI/CD
+- name: Install Docker on remote host
   hosts: centos_remote_a
   become: true
   tasks:
