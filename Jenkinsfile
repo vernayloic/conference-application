@@ -13,10 +13,11 @@ pipeline {
               sh "mvn clean install package"
            }
        }
-       stage('Build Conference App Checkstyle') {
+       stage('Build Conference App SonarQube') {
                   steps{
-                     // Run the maven build with checkstyle
-                     sh "mvn clean package checkstyle:checkstyle"
+                     withSonarQubeEnv('SonarQube') {
+                     sh "mvn clean package sonar:sonar -Dsonar.host_url=$SONAR_HOST_URL"
+                     }
                   }
                }
     }
